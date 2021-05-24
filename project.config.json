@@ -1,0 +1,14 @@
+{
+    "miniprogramRoot": "./dist",
+    "projectname": "Ionic.Shop",
+    "description": "",
+    "appid": "wx6fa44cba29ffd535",
+    "setting": {
+        "urlCheck": true,
+        "es6": false,
+        "postcss": false,
+        "minified": false,
+        "useCompilerModule": true
+    },
+    "compileType": "miniprogram"
+}

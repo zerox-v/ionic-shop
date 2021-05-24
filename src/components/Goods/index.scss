@@ -1,0 +1,41 @@
+@import '../../styles/scss/main.scss';
+.goodsWarp {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    .goodsContentWarp {
+        display: flex;
+        flex-direction: row;
+        .goodsCategory {
+            width: 150rpx;
+            background-color: $color-bg-category;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            .goodsCategoryItem {
+                height: 108rpx;
+                font-size: 28rpx;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                justify-items: center;
+            }
+        }
+        .active {
+            color: $color-text-active;
+            font-size: 32rpx !important;
+            font-weight: bold;
+            background-color: #fff;
+        }
+        .goodsList {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .footerPosition {
+        height: 150rpx;
+        min-height: 150rpx;
+        width: 100%;
+    }
+}

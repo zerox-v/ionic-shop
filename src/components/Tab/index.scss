@@ -1,0 +1,24 @@
+.tabWarp {
+    display: flex;
+    height: 60rpx;
+    padding-top: 10rpx;
+    padding-bottom: 20rpx;
+    .tabItem {
+        padding: 10rpx 25rpx;
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+    .active {
+        font-weight: bold;
+    }
+    .active::after {
+        content: " ";
+        background-color: #02b6fd;
+        height: 6rpx;
+        width: 45rpx;
+        display: flex;
+        position: absolute;
+        bottom: -8rpx;
+    }
+}

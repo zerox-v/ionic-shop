@@ -1,0 +1,25 @@
+.shoppingCartWarp {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    flex-direction: column;
+    .shoppingCart {
+        position: fixed;
+        background-color: #fff;
+        height: 40vh;
+        z-index: 101;
+        left: 0;
+        right: 0;
+        bottom: 100rpx;
+        border-top-left-radius: 30rpx;
+        border-top-right-radius: 30rpx;
+        padding: 30rpx;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        .shoppingTitleWarp {
+            padding: 20rpx 0;
+            padding-top: 0;
+        }
+    }
+}

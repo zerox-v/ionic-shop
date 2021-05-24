@@ -1,0 +1,51 @@
+@import '../../styles/scss/main.scss';
+.topBg {
+    background: linear-gradient(#02b6fe, rgb(245, 245, 245));
+    padding: 24rpx;
+    background-size: 100% 350rpx;
+    background-repeat: no-repeat;
+}
+
+.tabWarp {
+    .tabItem {
+        display: flex;
+        flex-grow: 1;
+        background-color: rgba($color: #fff, $alpha: .6);
+        padding: 26rpx;
+        border-radius: 20rpx;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        text-align: center;
+        justify-content: center;
+        color: #fff;
+    }
+    .active {
+        background-color: #fff;
+        color: #02b6fe;
+    }
+}
+
+.orderContent {
+    min-height: 500rpx;
+    padding: 24rpx;
+}
+
+.orderFooter {
+    height: 120rpx;
+    display: flex;
+    background-color: $color-bg-main;
+    position: fixed;
+    z-index: 101;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: row;
+    padding: 0 20rpx;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.preferential {
+    border-top: 1rpx solid #efefefef;
+    height: 100rpx;
+}

@@ -1,0 +1,14 @@
+@import '../../styles/scss/setting.scss';
+.changeNumber {
+    box-sizing: border-box;
+    .iconfont {
+        font-size: 48px;
+        color: $color-bg-btn;
+    }
+    .number {
+        padding: 0 20rpx;
+    }
+    .gray {
+        color: #ccc;
+    }
+}

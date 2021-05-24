@@ -1,0 +1,53 @@
+@import '../../styles/scss/main.scss';
+.goodsItemWarp {
+    height: 200rpx;
+    margin-top: 40rpx;
+    display: flex;
+    flex-direction: row;
+    padding: 0 18rpx;
+    .goodsItemLeft {
+        padding-top: 5rpx;
+    }
+    .goodsItemRight {
+        display: flex;
+        flex-direction: column;
+        margin-left: 18rpx;
+        flex: 1;
+        justify-content: space-between;
+        .titleWarp {
+            display: flex;
+            flex-direction: column;
+            .goodsTitle {
+                font-size: 26rpx;
+            }
+            .salesVolume {
+                margin-top: 20rpx;
+                font-size: 20rpx;
+                color: #999;
+            }
+        }
+        .priceAndBtn {
+            height: 38px;
+            .price {
+                font-size: 26rpx;
+                font-weight: bold;
+                line-height: 38rpx;
+                color: $color-text-price;
+            }
+            .price::before {
+                content: " ￥";
+                font-size: 20rpx;
+                color: $color-text-price;
+            }
+            .addBtn {
+                background-color: $color-bg-btn;
+                border-radius: 24rpx;
+                padding: 0px 20rpx;
+                height: 48rpx;
+                font-size: 28rpx;
+                line-height: 48rpx;
+                color: $color-text-btn;
+            }
+        }
+    }
+}

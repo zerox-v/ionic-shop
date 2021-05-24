@@ -1,0 +1,27 @@
+.cust-header {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    flex-direction: column;
+    padding-bottom: 24rpx;
+    .title {
+        color: #000;
+        font-size: 32rpx;
+        line-height: 90rpx;
+    }
+    .search {
+        margin-left: 25rpx;
+        width: 60%;
+        border-radius: 30rpx;
+        height: 60rpx;
+        display: flex;
+        box-shadow: inset;
+        background-color: rgba(233, 233, 233, 0.8);
+    }
+}
+
+.bg-white {
+    background-color: white;
+    box-shadow: 1px 2px 20px 1px rgba(0, 0, 0, .1);
+}

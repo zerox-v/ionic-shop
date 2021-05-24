@@ -1,0 +1,94 @@
+@import './setting.scss';
+button {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+}
+
+button::after {
+    border: none;
+}
+
+.goodsImage {
+    width: 190rpx;
+    height: 190rpx;
+    border-radius: 10rpx;
+    background-color: #fafafa;
+}
+
+.title {
+    font-size: 32rpx;
+    color: #666;
+}
+
+.label {
+    font-size: 24rpx;
+    color: #ccc;
+}
+
+.price {
+    font-size: 28rpx;
+    color: #ff0000;
+}
+
+.ml10 {
+    margin-left: 10rpx;
+}
+
+.mr10 {
+    margin-right: 10rpx;
+}
+
+.mt10 {
+    margin-top: 10rpx;
+}
+
+.ml20 {
+    margin-left: 20rpx;
+}
+
+.mr20 {
+    margin-right: 20rpx;
+}
+
+.mt20 {
+    margin-top: 20rpx;
+}
+
+page,
+.mainBg {
+    background-color: rgb(245, 245, 245);
+}
+
+.p24 {
+    padding: 24rpx;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 20rpx;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.cancleBtn {
+    font-size: 24rpx;
+    border: 2rpx solid #ff0000;
+    color: #ff0000;
+    border-radius: 16rpx;
+    font-size: 28rpx;
+    height: 58rpx;
+    padding: 0 34rpx;
+    line-height: 58rpx;
+}
+
+.primaryBtn {
+    background-color: $color-bg-btn;
+    color: $color-text-btn;
+    border-radius: 16rpx;
+    font-size: 28rpx;
+    height: 58rpx;
+    padding: 0 34rpx;
+    line-height: 58rpx;
+}

@@ -1,0 +1,58 @@
+@import '../../styles/scss/main.scss';
+.selectSpecWarp {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    flex-direction: column;
+    .selectSpec {
+        position: fixed;
+        background-color: #fff;
+        height: 60vh;
+        z-index: 1001;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-top-left-radius: 30rpx;
+        border-top-right-radius: 30rpx;
+        padding: 30rpx;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .iconguanbi {
+            position: absolute;
+            font-size: 30rpx;
+            right: 20rpx;
+            top: 0;
+        }
+        .goodsImage {
+            height: 100rpx;
+            width: 100rpx;
+        }
+    }
+    .specsBtn {
+        height: 60rpx;
+        padding: 0 30rpx;
+        margin-right: 30rpx;
+        line-height: 60rpx;
+        font-size: 28rpx;
+        background-color: #efefef;
+    }
+    .active {
+        background-color: $color-bg-btn;
+        color: $color-text-btn;
+    }
+    .okBtn {
+        height: 80rpx;
+        line-height: 80rpx;
+        width: 80%;
+        margin-left: 10%;
+        font-size: 30rpx;
+        border-radius: 100rpx;
+        background-color: $color-bg-btn;
+        color: $color-text-btn;
+    }
+    .numberWarp {
+        height: 80rpx;
+        align-items: center;
+    }
+}
