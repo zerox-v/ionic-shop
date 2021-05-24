@@ -55,18 +55,19 @@ const Index: React.FunctionComponent<IIndexProps> = (props) => {
             GetBySourceAndOpenId(Config.SOURCE_KEY, JSON.parse(res1).openid).then(resx => {
               Taro.setStorageSync(Config.TOKEN_SAVE_KEY, resx);
               getCart();
-
+              getOrder();
+              const onShowEventId = getCurrentInstance().router?.onShow;
+              if (onShowEventId)
+                eventCenter.on(onShowEventId, () => {
+                  getCart();
+                  getOrder();
+                })
             });
           }
         });
       }
     });
-    const onShowEventId = getCurrentInstance().router?.onShow;
-    if (onShowEventId)
-      eventCenter.on(onShowEventId, () => {
-        getCart();
-        getOrder();
-      })
+    
     GetShopInfo().then((res: any) => {
       SetshopInfo(res);
     });
