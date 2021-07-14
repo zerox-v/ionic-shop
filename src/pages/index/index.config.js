@@ -1,4 +1,6 @@
 export default {
-    navigationBarTitleText: '首页',
+    navigationBarTitleText: '',
     navigationStyle: "custom",
+    transparentTitle: "always",
+    titlePenetrate: "YES"
 }

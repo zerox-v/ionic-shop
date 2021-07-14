@@ -4,7 +4,8 @@
     width: 100%;
     z-index: 99;
     flex-direction: column;
-    padding-bottom: 24rpx;
+    justify-content: center;
+    // padding-bottom: 24rpx;
     .title {
         color: #000;
         font-size: 32rpx;
@@ -12,7 +13,7 @@
     }
     .search {
         margin-left: 25rpx;
-        width: 60%;
+        width: 45%;
         border-radius: 30rpx;
         height: 60rpx;
         display: flex;

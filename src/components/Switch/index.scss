@@ -1,0 +1,22 @@
+@import './../../styles/scss/setting.scss';
+.switch {
+    font-size: 24rpx;
+    height: 56rpx;
+    background-color: $color-bg-btn-no-active;
+    border-radius: 100rpx;
+    .item {
+        display: flex;
+        height: 56rpx;
+        padding: 0 20rpx;
+        line-height: 56rpx;
+        border-radius: 100rpx;
+    }
+    .item:last-child {
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .active {
+        background-color: $color-bg-btn;
+        color: $color-text-btn;
+    }
+}

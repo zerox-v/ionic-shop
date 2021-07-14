@@ -31,11 +31,14 @@
         .goodsList {
             display: flex;
             flex-direction: column;
+            flex-grow: 1;
         }
-    }
-    .footerPosition {
-        height: 150rpx;
-        min-height: 150rpx;
-        width: 100%;
+        .item-sticky {
+            position: sticky;
+            top: 0px;
+            background-color: #fff;
+            padding: 10rpx 0;
+            padding-left: 20rpx;
+        }
     }
 }

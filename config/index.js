@@ -2,6 +2,7 @@ const path = require('path')
 const config = {
     projectName: 'Ionic.Shop',
     date: '2020-12-17',
+    outputRoot: `dist/${process.env.TARO_ENV}`,
     designWidth: 750,
     deviceRatio: {
         640: 2.34 / 2,
@@ -9,7 +10,6 @@ const config = {
         828: 1.81 / 2
     },
     sourceRoot: 'src',
-    outputRoot: 'dist',
     plugins: [],
     defineConstants: {},
     alias: {

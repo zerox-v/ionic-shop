@@ -4,6 +4,7 @@ import './index.scss'
 import Image from '../Image';
 import Taro from '@tarojs/taro'
 import { Delete } from '@/services/order-service'
+import NoData from '../NoData';
 interface IOrderProps {
   orderList?: any,
   onChange?: Function
@@ -19,6 +20,8 @@ const Order: React.FunctionComponent<IOrderProps> = (props) => {
     return total;
   }
   return <View className="orderWarp">
+
+{(!orderList||orderList.length==0)?<NoData></NoData>:null}
 
     {orderList.map((item: any, i) => {
       return <View key={i} className="item">
@@ -54,7 +57,7 @@ const Order: React.FunctionComponent<IOrderProps> = (props) => {
             <Button className="cancleBtn mr10" onClick={() => {
               Taro.showModal({
                 title: '提示',
-                content: '真的要删除吗？',
+                content: '真的取消订单吗？',
                 confirmColor:"#ff0000",
                 success: (res) =>{
                   if (res.confirm) {

@@ -81,7 +81,7 @@ const SelectSpec: React.FunctionComponent<ISelectSpecProps> = (props) => {
 
   return props.visibility ? <View className="selectSpecWarp" >
     <Marks onClick={close} />
-    <View className="selectSpec">
+    <View className="flex flex-col selectSpec">
       <Button className="iconfont iconguanbi" onClick={close} />
    
       <View className="flex flex-row flex-1 flex-grow-0" >

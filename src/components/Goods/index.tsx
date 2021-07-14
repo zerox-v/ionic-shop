@@ -1,7 +1,8 @@
 import { View, Text, ScrollView } from '@tarojs/components';
 import React, { useEffect, useState } from 'react';
+import Taro, { useReady } from '@tarojs/taro'
 import "./index.scss"
-import { GetAll } from '../../services/category-service'
+import { GetAll, GetAllAndGoods } from '../../services/category-service'
 import { GetListByCategoryId } from '../../services/goods-service'
 import GoodsItem from '../GoodsItem'
 interface IGoodsProps {
@@ -15,15 +16,47 @@ interface IGoodsProps {
 const Goods: React.FunctionComponent<IGoodsProps> = (props) => {
     const [goodsCategory, setGoodsCategory] = useState<any>([]);
     const [goodsList, setGoodsList] = useState<any>([]);
-    const [nowSelectCategoryId, setNowSelectCategoryId] = useState<any>();
 
-
+    const [scrollTop, setScrollTop] = useState<number>(0);
+    const [contentTop, setContentTop] = useState<number[]>([]);
+    const [nowSelectIndex, setNowSelectIndex] = useState<number>(1);
+    const query = Taro.createSelectorQuery();
+    useReady(() => {
+        console.log("useReady");
+    });
     useEffect(() => {
 
-        GetAll().then((res: any) => {
+        GetAllAndGoods().then((res: any) => {
             setGoodsCategory(res);
-            if (res.length > 0)
-                loadGoodList(res[0].id);
+            res.map((_, i) => {
+                query.select('#category-' + i).boundingClientRect();
+
+            });
+            query.selectViewport().scrollOffset()
+
+            setTimeout(() => {
+
+                query.exec((resQuery) => {
+                    console.log(resQuery);
+                    let tops: any = [];
+                    let fristTop:number = 0;
+                    resQuery.map((item, i) => {
+                        if (i<res.length) {
+                            console.log(item);
+                            if (i == 0) {
+                                fristTop = item.top;
+                                tops.push(0);
+                            } else {
+                                tops.push(parseInt((item.top-fristTop).toString()));
+                            }
+
+                        }
+                    });
+                    setContentTop(tops);
+                })
+            }, 100);
+
+
         });
 
     }, []);
@@ -37,15 +70,16 @@ const Goods: React.FunctionComponent<IGoodsProps> = (props) => {
 
     }, [props.cartDadta]);
 
-    const loadGoodList = (categoryId) => {
-        setNowSelectCategoryId(categoryId);
-        let goods: any = [];
-        GetListByCategoryId(categoryId).then((res: any) => {
-            res.map(item => {
-                goods.push({ ...item, selectNumer: getCartNumber(item) });
-            });
-            setGoodsList(goods);
-        });
+    const loadGoodList = (index) => {
+        let category = goodsCategory[index];
+        setGoodsList(category.goods);
+        // let goods: any = [];
+        // GetListByCategoryId(categoryId).then((res: any) => {
+        //     res.map(item => {
+        //         goods.push({ ...item, selectNumer: getCartNumber(item) });
+        //     });
+        //     setGoodsList(goods);
+        // });
     }
 
     const getCartNumber = (item) => {
@@ -61,28 +95,60 @@ const Goods: React.FunctionComponent<IGoodsProps> = (props) => {
         return number;
     }
 
+    const goodsScroll = (e) => {
+        let scrollTop = e.detail.scrollTop;
+        console.log(contentTop,scrollTop);
+
+        if (contentTop.length > 1) {
+
+            let index = 1;
+            for (let i = 1; index < contentTop.length; i++) {
+                if (scrollTop >= (contentTop[i - 1]) && scrollTop < (contentTop[i])) {
+                    index = i;
+                    break
+                }
+            }
+            if (nowSelectIndex != index) {
+                setNowSelectIndex(index);
+            }
+        }
+
+    }
+
     return <View className="goodsWarp">
         <View className="goodsContentWarp">
             <ScrollView enableFlex={true} style={props.style} scrollY={props.isScroll} className="goodsCategory">
                 {goodsCategory.map((item, i) => {
-                    return <View className={"goodsCategoryItem " + (item.id == nowSelectCategoryId ? "active" : "")} key={i} onClick={() => {
-                        loadGoodList(item.id);
+                    return <View className={"goodsCategoryItem " + ((i + 1) == nowSelectIndex ? "active" : "")} key={i} onClick={() => {
+                        setNowSelectIndex(i + 1);
+                        setScrollTop(contentTop[i]);
                     }}>
                         <Text >{item.name}</Text>
                     </View>;
                 })}
                 <View className="footerPosition" />
             </ScrollView>
-            <ScrollView enableFlex={true} style={{...props.style,backgroundColor:"#fff"}} scrollY={props.isScroll} className="goodsList">
-                {goodsList.map((item, i) => {
+            <ScrollView enableFlex={true} scrollTop={scrollTop} onScroll={goodsScroll} style={{ ...props.style, backgroundColor: "#fff" }} scrollY={props.isScroll} className="goodsList">
+                <View>
+                    {goodsCategory.map((item, i) => {
+                        return <View key={i} className={(goodsCategory.length==i+1?"lastItem":"")} >
+                            <View id={'category-' + i} className="item-sticky">
+                                <Text >{item.name}</Text>
+                            </View>
 
+                            {item.goods.map((goodsItem, index) => {
+                                return <GoodsItem  data={goodsItem} key={index} onSelectSpec={(data) => {
+                                    let { onSelectSpec } = props;
+                                    onSelectSpec && onSelectSpec(data);
 
-                    return <GoodsItem data={item} key={i} onSelectSpec={(data) => {
-                        let { onSelectSpec } = props;
-                        onSelectSpec && onSelectSpec(data);
+                                }} />;
+                            })
+                            }
 
-                    }} />;
-                })}
+                        </View>
+
+                    })}
+                </View>
                 <View className="footerPosition" />
             </ScrollView>
         </View>

@@ -2,16 +2,16 @@
 import request from '../utils/request'
 
 
-/** 
-*根据Id获取
+ /** 
+ *根据Id获取
 *@param id Id
-*/
-export async function GetById(id: string) {
-    return request.get("Product/GetById", {
-        "id": id,
-    });
+ */
+export async function GetById(id:string) {
+	return request.get("Product/GetById",{
+    "id":id,
+        });
 }
-
+        
 
 /** 
 *编辑
@@ -24,10 +24,10 @@ export async function GetById(id: string) {
 *@param specsName 规格名称
 
 */
-export async function Edit(params: IProductDto) {
-    return request.post("Product/Edit", params);
+export async function Edit(params:IProductDto) {
+	return request.post("Product/Edit",params);
 }
-
+        
 
 /** 
 *获取列表
@@ -37,39 +37,39 @@ export async function Edit(params: IProductDto) {
 *@param params 
 
 */
-export async function GetPage(params: IBaseListInput) {
-    return request.post("Product/GetPage", params);
+export async function GetPage(params:IBaseListInput) {
+	return request.post("Product/GetPage",params);
 }
-
-/** 
-*根据Id删除 多个Id用逗号隔开
+        
+ /** 
+ *根据Id删除 多个Id用逗号隔开
 *@param id Id
-*/
-export async function Delete(id: string) {
-    return request.get("Product/Delete", {
-        "id": id,
-    });
+ */
+export async function Delete(id:string) {
+	return request.get("Product/Delete",{
+    "id":id,
+        });
 }
-
-/** 
-*修改状态
+        
+ /** 
+ *修改状态
 *@param id 用户Id
 *@param status 状态
-*/
-export async function UpdataStatus(id: string, status: number) {
-    return request.get("Product/UpdataStatus", {
-        "id": id,
-        "status": status,
-    });
+ */
+export async function UpdataStatus(id:string,status:number) {
+	return request.get("Product/UpdataStatus",{
+    "id":id,
+    "status":status,
+        });
 }
-
-/** 
-*根据商品Id 获取
+        
+ /** 
+ *根据商品Id 获取
 *@param goodsId 
-*/
-export async function GetByGoodsId(goodsId: string) {
-    return request.get("Product/GetByGoodsId", {
-        "goodsId": goodsId,
-    });
+ */
+export async function GetByGoodsId(goodsId:string) {
+	return request.get("Product/GetByGoodsId",{
+    "goodsId":goodsId,
+        });
 }
 

@@ -48,13 +48,13 @@ interface DynamicFilterInfo {
 interface ILoginInput {
 
     /**账号*/
-    account?:string
+    account:string
 
     /**密码*/
-    password?:string
+    password:string
 
     /**验证码*/
-    vcode?:string
+    vCode:string
 }
 
 
@@ -80,6 +80,9 @@ interface ICategoryDto {
 
     /**父级Id*/
     parentId:string
+
+    
+    goods?:any
 }
 
 
@@ -315,10 +318,31 @@ interface IOrderDto {
     id?:string
 
     /**订单编号*/
-    orderNumber:string
+    orderNumber?:string
+
+    /**取货码*/
+    code?:string
 
     /**订单金额*/
-    money:string
+    totalMoney:any
+
+    /**支付金额*/
+    payMoney:any
+
+    /**货地址Id*/
+    addressId?:string
+
+    /**收货地址*/
+    address?:string
+
+    
+    useType:number
+
+    /**订单状态 1待支付 2已支付*/
+    status:number
+
+    /**商品详细*/
+    goods?:any
 }
 
 
@@ -496,6 +520,38 @@ interface IUserDto {
 
     /**状态 1正常 2冻结*/
     status:number
+}
+
+
+interface IChangePasswordDto {
+
+    /**旧密码*/
+    oldPassword:string
+
+    /**新密码*/
+    newPassword:string
+}
+
+
+interface INotifyInput {
+
+    
+    id?:string
+
+    
+    create_time?:string
+
+    
+    event_type?:string
+
+    
+    resource_type?:string
+
+    
+    resource:any
+
+    
+    summary?:string
 }
 
 

@@ -7,6 +7,6 @@ export default {
   window: {
      navigationBarTextStyle: 'black',
      navigationBarBackgroundColor:"#02b6fe",
-     backgroundColor:"#ff0000"
+     allowsBounceVertical:"NO"
   }
 }

@@ -68,7 +68,7 @@ page,
 .card {
     background-color: #fff;
     border-radius: 20rpx;
-    padding: 20rpx;
+    padding: 30rpx;
     margin-bottom: 20rpx;
 }
 
@@ -91,4 +91,25 @@ page,
     height: 58rpx;
     padding: 0 34rpx;
     line-height: 58rpx;
+}
+
+.footerPosition {
+    height: 150rpx;
+    min-height: 150rpx;
+    width: 100%;
+}
+
+.submitOrder {
+    background-color: $color-bg-btn;
+    border-radius: 50rpx;
+    font-size: 28rpx;
+    height: 68rpx;
+    padding: 0 34rpx;
+    line-height: 68rpx;
+    color: $color-text-btn;
+}
+
+.submitOrder[disabled] {
+    background-color: rgba($color: #000000, $alpha: .3);
+    color: #fff;
 }
