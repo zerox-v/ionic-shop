@@ -1,6 +1,5 @@
 ## 简介
-### 基于Taro、React编写的微信小程序，项目正在一步一步完善。
-
+### 基于Taro、React编写的微信、支付宝小程序，项目正在一点点完善。
 ## 开始使用
 #### 全局安装 Taro
 `yarn global add @tarojs/cli`
@@ -10,8 +9,17 @@
 `yarn dev:weapp`
 #### 打包
 `yarn build:weapp`
+## 后台地址
+#### [https://shop.ionic.fun](https://shop.ionic.fun) 
+
+#### 账号:`shop` 
+
+#### 密码:`123456`
+#### 数据库会不定时还原哟
 
 ## 其他
+
+
 [GitHub地址](https://github.com/zerox-v/ionic-shop)
 
 [码云地址](https://gitee.com/zhangxuanzhi/ionic-shop)
