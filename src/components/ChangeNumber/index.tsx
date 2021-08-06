@@ -17,7 +17,7 @@ const ChangeNumber: React.FunctionComponent<IChangeNumberProps> = (props) => {
 
   }, [props.goodsNumber]);
   const change = (num) => {
-    setNumber(num);
+    
     let { onChange } = props;
     onChange && onChange(num);
   }
@@ -30,7 +30,8 @@ const ChangeNumber: React.FunctionComponent<IChangeNumberProps> = (props) => {
       });
     } else {
       let num = number - 1;
-      change(num);
+      setNumber(num);
+      change(-1);
     }
 
   }} ></Button>
@@ -42,7 +43,8 @@ const ChangeNumber: React.FunctionComponent<IChangeNumberProps> = (props) => {
         onSelectSpec && onSelectSpec();
       } else {
         let num = number + 1;
-        change(num);
+        setNumber(num);
+        change(1);
       }
 
     }}></Button>

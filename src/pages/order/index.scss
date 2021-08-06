@@ -25,6 +25,26 @@
     }
 }
 
+.textareaWarp {
+    min-height: 160rpx;
+    background-color: #efefef;
+    padding: 10rpx;
+    border-radius: 10rpx;
+    font-size: 28rpx;
+}
+
+.quickBtn {
+    font-size: 24rpx;
+    border: solid 1rpx #efefef;
+    color: #333;
+    margin: 0;
+    height: 50rpx;
+    line-height: 50rpx;
+    padding: 0 14rpx;
+    margin-top: 20rpx;
+    margin-right: 30rpx;
+}
+
 .orderContent {
     min-height: 500rpx;
     padding: 24rpx;
@@ -42,7 +62,7 @@
     flex-direction: row;
     padding: 0 20rpx;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .preferential {
