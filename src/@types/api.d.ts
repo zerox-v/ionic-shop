@@ -460,7 +460,7 @@ interface IShoppingCartDto {
     goodsId?:string
 
     /**商品Id*/
-    productId:string
+    productId?:string
 
     /**商品名称*/
     productName?:string

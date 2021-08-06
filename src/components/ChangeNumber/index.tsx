@@ -13,7 +13,6 @@ interface IChangeNumberProps {
 const ChangeNumber: React.FunctionComponent<IChangeNumberProps> = (props) => {
   const [number, setNumber] = useState(0);
   useEffect(() => {
-    console.log("ChangeNumber.goodsNumber", props.goodsNumber);
     setNumber(props.goodsNumber ? props.goodsNumber : 0);
 
   }, [props.goodsNumber]);

@@ -10,13 +10,11 @@ interface IGoodsProps {
     isScroll?: boolean,
     onSelectSpec?: Function
     cartDadta?: any
-
+    onGoodsChange?: Function
 }
 
 const Goods: React.FunctionComponent<IGoodsProps> = (props) => {
     const [goodsCategory, setGoodsCategory] = useState<any>([]);
-    const [goodsList, setGoodsList] = useState<any>([]);
-
     const [scrollTop, setScrollTop] = useState<number>(0);
     const [contentTop, setContentTop] = useState<number[]>([]);
     const [nowSelectIndex, setNowSelectIndex] = useState<number>(1);
@@ -39,15 +37,15 @@ const Goods: React.FunctionComponent<IGoodsProps> = (props) => {
                 query.exec((resQuery) => {
                     console.log(resQuery);
                     let tops: any = [];
-                    let fristTop:number = 0;
+                    let fristTop: number = 0;
                     resQuery.map((item, i) => {
-                        if (i<res.length) {
+                        if (i < res.length) {
                             console.log(item);
                             if (i == 0) {
                                 fristTop = item.top;
                                 tops.push(0);
                             } else {
-                                tops.push(parseInt((item.top-fristTop).toString()));
+                                tops.push(parseInt((item.top - fristTop).toString()));
                             }
 
                         }
@@ -61,26 +59,27 @@ const Goods: React.FunctionComponent<IGoodsProps> = (props) => {
 
     }, []);
 
-    useEffect(() => {
-        let goods: any = [];
-        goodsList.map(item => {
-            goods.push({ ...item, selectNumer: getCartNumber(item) });
-        });
-        setGoodsList(goods);
+    // useEffect(() => {
+    //     let goods: any = [];
+    //     goodsList.map(item => {
+    //         goods.push({ ...item, selectNumer: getCartNumber(item) });
+    //     });
+    //     console.log("goods",goods);
+    //     setGoodsList(goods);
 
-    }, [props.cartDadta]);
+    // }, [props.cartDadta]);
 
-    const loadGoodList = (index) => {
-        let category = goodsCategory[index];
-        setGoodsList(category.goods);
-        // let goods: any = [];
-        // GetListByCategoryId(categoryId).then((res: any) => {
-        //     res.map(item => {
-        //         goods.push({ ...item, selectNumer: getCartNumber(item) });
-        //     });
-        //     setGoodsList(goods);
-        // });
-    }
+    // const loadGoodList = (index) => {
+    //     let category = goodsCategory[index];
+    //     setGoodsList(category.goods);
+    //     // let goods: any = [];
+    //     // GetListByCategoryId(categoryId).then((res: any) => {
+    //     //     res.map(item => {
+    //     //         goods.push({ ...item, selectNumer: getCartNumber(item) });
+    //     //     });
+    //     //     setGoodsList(goods);
+    //     // });
+    // }
 
     const getCartNumber = (item) => {
         var { cartDadta } = props;
@@ -97,8 +96,6 @@ const Goods: React.FunctionComponent<IGoodsProps> = (props) => {
 
     const goodsScroll = (e) => {
         let scrollTop = e.detail.scrollTop;
-        console.log(contentTop,scrollTop);
-
         if (contentTop.length > 1) {
 
             let index = 1;
@@ -131,16 +128,15 @@ const Goods: React.FunctionComponent<IGoodsProps> = (props) => {
             <ScrollView enableFlex={true} scrollTop={scrollTop} onScroll={goodsScroll} style={{ ...props.style, backgroundColor: "#fff" }} scrollY={props.isScroll} className="goodsList">
                 <View>
                     {goodsCategory.map((item, i) => {
-                        return <View key={i} className={(goodsCategory.length==i+1?"lastItem":"")} >
+                        return <View key={i} className={(goodsCategory.length == i + 1 ? "lastItem" : "")} >
                             <View id={'category-' + i} className="item-sticky">
                                 <Text >{item.name}</Text>
                             </View>
-
                             {item.goods.map((goodsItem, index) => {
-                                return <GoodsItem  data={goodsItem} key={index} onSelectSpec={(data) => {
+                                let goodsData = { ...goodsItem, selectNumer: getCartNumber(goodsItem) }
+                                return <GoodsItem onGoodsChange={props.onGoodsChange} data={goodsData} key={index} onSelectSpec={(data) => {
                                     let { onSelectSpec } = props;
                                     onSelectSpec && onSelectSpec(data);
-
                                 }} />;
                             })
                             }

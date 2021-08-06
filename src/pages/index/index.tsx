@@ -8,10 +8,10 @@ import Shop from '../../components/Shop'
 import Footer from '../../components/Footer'
 import SelectSpec from '../../components/SelectSpec'
 
-import { GetShopInfo, GetWeChatOpenId,GetAliPayUserId } from '../../services/shop-service'
+import { GetShopInfo, GetWeChatOpenId, GetAliPayUserId } from '../../services/shop-service'
 import { GetBySourceAndOpenId } from '../../services/members-service'
 import { GetCart } from '../../services/shoppingcart-service'
-import Taro, { eventCenter, getCurrentInstance,usePageScroll } from '@tarojs/taro'
+import Taro, { eventCenter, getCurrentInstance, usePageScroll } from '@tarojs/taro'
 import './index.scss'
 import Config from '../../utils/config'
 import Tab from '@/components/Tab'
@@ -19,7 +19,7 @@ import Image from '@/components/Image'
 import { GetOrderList } from '@/services/order-service'
 import Switch from '@/components/Switch'
 
-declare var my:any;
+declare var my: any;
 
 interface IIndexProps {
 
@@ -40,12 +40,12 @@ const Index: React.FunctionComponent<IIndexProps> = (props) => {
   const [shopInfo, SetshopInfo] = useState<any>({});
   const [cartList, SetCartList] = useState<any>([]);
   const [orderList, setOrderList] = useState<any>([]);
-  const [useType,setUseType]=useState(1);
-  usePageScroll((e)=>{
+  const [useType, setUseType] = useState(1);
+  usePageScroll((e) => {
     setScrollHeight(e.scrollTop)
-    if(e.scrollTop==0){
+    if (e.scrollTop == 0) {
       setIsScroll(false);
-    }else if(e.scrollTop>statusBarHeight+60){
+    } else if (e.scrollTop > statusBarHeight + 60) {
       setIsScroll(true);
     }
   })
@@ -57,7 +57,7 @@ const Index: React.FunctionComponent<IIndexProps> = (props) => {
         setScreenHeight(res.windowHeight);
       }
     })
-    
+
     var env = Taro.getEnv();
     console.log()
     if (env == "WEAPP") {
@@ -66,7 +66,7 @@ const Index: React.FunctionComponent<IIndexProps> = (props) => {
           GetWeChatOpenId(res.code).then((res1: string) => {
             {
               getUserInfo(JSON.parse(res1).openid);
-              
+
             }
           });
         }
@@ -77,10 +77,10 @@ const Index: React.FunctionComponent<IIndexProps> = (props) => {
       my.getAuthCode({
         scopes: 'auth_base',
         success: ({ authCode }) => {
-         console.log(authCode);
-         GetAliPayUserId(authCode).then((res:any)=>{
-          getUserInfo(res);
-         })
+          console.log(authCode);
+          GetAliPayUserId(authCode).then((res: any) => {
+            getUserInfo(res);
+          })
         },
       });
 
@@ -95,9 +95,9 @@ const Index: React.FunctionComponent<IIndexProps> = (props) => {
 
   }, []);
 
-  const getUserInfo=(code:any)=>{
+  const getUserInfo = (code: any) => {
     let env = Taro.getEnv();
-    GetBySourceAndOpenId(env,code).then(resx => {
+    GetBySourceAndOpenId(env, code).then(resx => {
       Taro.setStorageSync(Config.TOKEN_SAVE_KEY, resx);
       getCart();
       getOrder();
@@ -144,14 +144,14 @@ const Index: React.FunctionComponent<IIndexProps> = (props) => {
       </View>
       <View className="goodsContent">
         <View className="flex flex-row justify-between items-center">
-        <Tab id="tab-id" tabs={tabData} selectIndex={tabSelectedIndex} onChange={(index) => {
-          setTabSelectedIndex(index);
-        }} />
-        <Switch className="mr10"  value={useType} onChange={(value)=>{
-          setUseType(value);
-        }} options={[{title:"堂食",value:1},{title:"打包",value:2}]} />
+          <Tab id="tab-id" tabs={tabData} selectIndex={tabSelectedIndex} onChange={(index) => {
+            setTabSelectedIndex(index);
+          }} />
+          <Switch className="mr10" value={useType} onChange={(value) => {
+            setUseType(value);
+          }} options={[{ title: "堂食", value: 1 }, { title: "打包", value: 2 }]} />
         </View>
-       
+
         <Swiper className="mainBg" style={{ height: (screenHeight - statusBarHeight - 90) + 'px' }} current={tabSelectedIndex} onChange={(e) => {
           setTabSelectedIndex(e.detail.current);
         }}>
@@ -159,6 +159,8 @@ const Index: React.FunctionComponent<IIndexProps> = (props) => {
             <Goods cartDadta={cartList} isScroll={isScroll} style={{ height: (screenHeight - statusBarHeight - 90) + 'px' }} onSelectSpec={(data) => {
               setClickGoodsId(data.id);
               setSelectSpecVisible(true);
+            }} onGoodsChange={() => {
+              getCart();
             }} />
           </SwiperItem>
           <SwiperItem className="swiperItem">
@@ -182,7 +184,7 @@ const Index: React.FunctionComponent<IIndexProps> = (props) => {
     {tabSelectedIndex == 0 ? <Footer cartData={cartList} onChange={() => {
       getCart();
     }} /> : null}
- </View> ;
+  </View>;
 };
 
 export default Index;

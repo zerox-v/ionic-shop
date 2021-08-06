@@ -2,10 +2,12 @@ import { View, Text, Button } from '@tarojs/components';
 import React from 'react';
 import ChangeNumber from '../ChangeNumber';
 import Image from '../Image';
+import { AddShoppingCart } from '../../services/shoppingcart-service'
 import './index.scss'
 interface IGoodsItemProps {
     data: any,
     onSelectSpec?: Function
+    onGoodsChange?:Function
 
 }
 
@@ -30,7 +32,15 @@ const GoodsItem: React.FunctionComponent<IGoodsItemProps> = (props) => {
                 }}>选规格</Button> : <ChangeNumber isMoreSpec={data.isMoreSpec} onSelectSpec={() => {
                     let { onSelectSpec } = props;
                     onSelectSpec && onSelectSpec(data);
-                }} goodsNumber={data.selectNumer} />}
+                }} goodsNumber={data.selectNumer} onChange={(num)=>{
+                    AddShoppingCart({
+                        goodsId:data.id,
+                        number:num
+                    }).then(res=>{
+                        let {onGoodsChange}=props;
+                        onGoodsChange&&onGoodsChange();
+                    });
+                }} />}
             </View>
         </View>
 
